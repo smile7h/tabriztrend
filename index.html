@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TABRIZTREND</title>
-  <!-- فونت شیک برای تیتر و متن -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Vazirmatn&display=swap" rel="stylesheet">
   <style>
     body {
@@ -29,9 +28,6 @@
       max-width: 540px;
       width: 90%;
       transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
     }
 
     .logo-holder {
@@ -90,6 +86,7 @@
       display:flex;
       flex-direction: column;
       gap: 12px;
+      margin: 0 auto;
     }
 
     .links a {
@@ -100,31 +97,32 @@
       text-decoration: none;
       font-weight: 600;
       border: 1px solid rgba(255,255,255,0.04);
-      transition: all 0.3s ease;
+      transition: all 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
+    /* افکت شناور و glow هنگام هاور */
     .links a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 15px rgba(255,255,255,0.5), 0 0 25px rgba(255,255,255,0.3);
     }
 
     /* گرادینت اختصاصی برای هر لینک */
     a[href^="mailto"] { 
-      background: linear-gradient(90deg, #a0d8ff, #ffffff); /* ایمیل آبی روشن و نزدیک سفید */
+      background: linear-gradient(90deg, #FFD700, #FF8C00); /* ایمیل زرد و نارنجی */
     }       
     a[href*="instagram"] { 
-      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); /* همان پالت قبلی */
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); /* اینستاگرام */
     } 
     a[href*="t.me"] { 
-      background: linear-gradient(90deg, #0088cc, #005f99); /* تلگرام آبی و پر رنگ تر */
+      background: linear-gradient(90deg, #0088cc, #005f99); /* تلگرام */
     } 
     a[href*="wa.me"] { 
-      background: linear-gradient(90deg, #25d366, #a3f7c4); /* واتساپ سبز و سبز کمرنگ */
+      background: linear-gradient(90deg, #25d366, #a3f7c4); /* واتساپ */
     } 
     a[href*="giphy"] { 
-      background: linear-gradient(90deg, #000000, #333333); /* گیفی مشکی و مشکی روشنتر */
+      background: linear-gradient(90deg, #000000, #333333); /* گیفی */
     }
 
     footer {
@@ -144,21 +142,8 @@
     <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
     <div class="bio">
       We're currently making some improvements to our site. Thanks for bearing with us!<br/>
-      Click on one of the links below to contact us:
+      Click on one of the links below to contact us
     </div>
-
-    <div class="links">
-      <a href="mailto:i@tabriztrend.ir">Email</a>
-      <a href="https://instagram.com/tabriz_info" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://t.me/yourtelegram" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://wa.me/989360189576" target="_blank" rel="noopener">Whatsapp</a>
-      <a href="https://giphy.com/tabrizchannel" target="_blank" rel="noopener">Giphy</a>
-    </div>
-
-    <footer>TabrizTrend © 2025</footer>
-  </div>
-</body>
-</html>    </div>
 
     <div class="links">
       <a href="mailto:i@tabriztrend.ir">Email</a>
