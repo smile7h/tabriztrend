@@ -4,13 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TABRIZTREND</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Vazirmatn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Vazirmatn&display=swap" rel="stylesheet">
 <style>
+/* ========== Base ========== */
+:root{
+  --bg: #0f1724;
+  --text: #e6eef8;
+}
+*{box-sizing:border-box}
 body {
   margin:0;
   padding:0;
-  background: #0f1724;
-  color: #e6eef8;
+  background: var(--bg);
+  color: var(--text);
   font-family: "Vazirmatn", sans-serif;
   display:flex;
   justify-content:center;
@@ -20,7 +26,7 @@ body {
   text-align: center;
 }
 
-/* CARD */
+/* ========== CARD ========== */
 .card {
   background: rgba(255,255,255,0.02);
   padding: 28px;
@@ -31,7 +37,7 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* LOGO */
+/* ========== LOGO ========== */
 .logo-holder {
   display:inline-block;
   background:white;
@@ -51,14 +57,91 @@ body {
   100% { transform: translateY(0) rotate(0deg); }
 }
 
-/* TITLE */
+/* ========== ROTATING TITLES (GLASS NEON) ========== */
+/* container for single visible title */
+.title-wrap {
+  height: 62px; /* reserve space so layout doesn't jump */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:6px;
+  perspective: 800px;
+}
 
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px; /* smaller than before as requested */
+  letter-spacing: 1.6px;
+  line-height:1;
+  margin:0;
+  padding:0 8px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.45s cubic-bezier(.2,.9,.2,1);
+  transform-origin: center;
+  will-change: opacity, transform, text-shadow;
+  opacity:0;
+  transform: translateY(8px) scale(0.98);
+  /* default CSS variables (overridden inline by JS) */
+  --g1: #fff;
+  --g2: #fff;
+  --glow: rgba(255,255,255,0.3);
+  text-shadow: 0 0 8px var(--glow), 0 0 18px rgba(0,0,0,0.12);
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  /* glassy/neon overlay */
+  background-size: 200% 100%;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* TEXTS */
-.subtitle { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 18px; }
-.bio { margin: 28px 0; color: rgba(255,255,255,0.85); line-height: 1.5; }
+/* visible state */
+.title.show {
+  opacity:1;
+  transform: translateY(0) scale(1);
+  animation: subtlePop 650ms ease;
+}
 
-/* LINKS */
+/* exit state */
+.title.hide {
+  opacity:0;
+  transform: translateY(-8px) scale(0.98);
+}
+
+/* a gentle pop for appear */
+@keyframes subtlePop {
+  0% { transform: translateY(6px) scale(.985); }
+  60% { transform: translateY(-2px) scale(1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* pulsating neon glow (text-shadow) */
+.title .pulse {
+  display:inline-block;
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+@keyframes pulseGlow {
+  0%   { text-shadow: 0 0 8px var(--glow), 0 0 18px rgba(0,0,0,0.12); }
+  50%  { text-shadow: 0 0 18px var(--glow), 0 0 36px rgba(0,0,0,0.08); }
+  100% { text-shadow: 0 0 8px var(--glow), 0 0 18px rgba(0,0,0,0.12); }
+}
+
+/* main title slightly larger & bolder */
+.title.main {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+/* other titles a bit lighter */
+.title.alt {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+/* ========== TEXTS ========== */
+.subtitle { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 12px; }
+.bio { margin: 20px 0 24px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+
+/* ========== LINKS ========== */
 .links {
   display:flex;
   flex-direction: column;
@@ -73,80 +156,18 @@ body {
   color: #fff;
   text-decoration: none;
   font-weight: 600;
-  border: 1px solid rgbaimport { useState, useEffect } from "react";
-    
-import { motion } from "framer-motion";
-
-const titles = [
-  {
-    text: "TABRIZ TREND",
-    colors: ["#39FF14", "#000000"], // سبز فسفری و مشکی (تیتر اصلی)
-  },
-  {
-    text: "Tabriz Info",
-    colors: ["#ff38ff", "#9933ff"], // صورتی و بنفش
-  },
-  {
-    text: "Tabriz Channel",
-    colors: ["#80d4ff", "#0066ff"], // آبی کم‌رنگ و پررنگ
-  },
-  {
-    text: "Tabriz Shahrimiz",
-    colors: ["#cc33ff", "#ff0033"], // بنفش و قرمز
-  },
-];
-
-export default function App() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % titles.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const active = titles[index];
-
-  return (
-    <div className="w-full h-screen flex items-center justify-center bg-black">
-      <motion.h1
-        key={active.text}
-        initial={{ opacity: 0, y: 20, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: -20, scale: 0.9 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="text-5xl font-extrabold text-center select-none"
-        style={{
-          background: `linear-gradient(90deg, ${active.colors[0]}, ${active.colors[1]})`,
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          filter: "drop-shadow(0 0 12px rgba(255,255,255,0.4))",
-        }}
-      >
-        <motion.span
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          {active.text}
-        </motion.span>
-      </motion.h1>
-    </div>
-  );
-}
-(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.04);
   overflow: hidden;
   background-size: 400% 100%;
   animation: gradientShift 8s ease-in-out infinite;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(.2,.9,.2,1);
 }
 
 .links a:hover {
   transform: translateY(-5px) scale(1.06);
-  box-shadow: 0 0 25px rgba(255,255,255,0.5);
+  box-shadow: 0 0 25px rgba(255,255,255,0.12);
 }
-
 @keyframes gradientShift {
   0% { background-position: 0% 0%; }
   50% { background-position: 100% 0%; }
@@ -154,18 +175,18 @@ export default function App() {
 }
 
 /* COLOR PALETTES */
-a[href^="mailto"] { background: linear-gradient(90deg, #ffcc00, #ff8800, #ffcc00); }
-a[href*="instagram"] { background: linear-gradient(90deg, #f58529, #8134af, #dd2a7b, #f58529); }
-a[href*="t.me"] { background: linear-gradient(90deg, #0088cc, #005f99, #0088cc); }
-a[href*="wa.me"] { background: linear-gradient(90deg, #25d366, #8fffdf, #25d366); }
-a[href*="giphy"] { background: linear-gradient(90deg, #000, #333, #000); }
+a[href^="mailto"] { background: linear-gradient(90deg, #ffcc00, #ff8800, #ffcc00); } /* ایمیل زرد/نارنجی */
+a[href*="instagram"] { background: linear-gradient(90deg, #f58529, #8134af, #dd2a7b, #f58529); } /* اینستا */
+a[href*="t.me"] { background: linear-gradient(90deg, #0088cc, #005f99, #0088cc); } /* تلگرام */
+a[href*="wa.me"] { background: linear-gradient(90deg, #25d366, #8fffdf, #25d366); } /* واتساپ */
+a[href*="giphy"] { background: linear-gradient(90deg, #000, #333, #000); } /* گیفی */
 
-/* ABOUT BUTTON */
+/* ABOUT BUTTON special */
 .about-btn {
   background: linear-gradient(90deg, #1e3c72, #2a5298, #1e3c72) !important;
 }
 
-/* ABOUT BOX */
+/* ========== ABOUT BOX ========== */
 #aboutBox {
   position: fixed;
   bottom: 0;
@@ -191,7 +212,7 @@ a[href*="giphy"] { background: linear-gradient(90deg, #000, #333, #000); }
   max-width: 480px;
   line-height: 1.8;
   color: #e6eef8;
-  box-shadow: 0 0 18px rgba(255,255,255,0.15);
+  box-shadow: 0 0 18px rgba(255,255,255,0.08);
   animation: popUp 0.4s ease forwards;
 }
 
@@ -199,12 +220,22 @@ a[href*="giphy"] { background: linear-gradient(90deg, #000, #333, #000); }
   from { opacity:0; }
   to { opacity:1; }
 }
-
 @keyframes popUp {
   0% { transform: scale(0.7) translateY(30px); opacity:0; }
   100% { transform: scale(1) translateY(0); opacity:1; }
 }
 
+/* ========== Footer ========== */
+footer { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 16px; }
+
+/* ========== Responsive tweaks ========== */
+@media (max-width:420px){
+  .title.main { font-size: 22px; }
+  .title { font-size: 20px; }
+  .logo { width: 100px; }
+  .card { padding:18px; }
+  .title-wrap { height: 54px; }
+}
 </style>
 </head>
 <body>
@@ -213,10 +244,15 @@ a[href*="giphy"] { background: linear-gradient(90deg, #000, #333, #000); }
 
   <div class="logo-holder">
     <img class="logo"
-         src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg">
+         src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg"
+         alt="TabrizTrend Logo">
   </div>
 
-  <div class="title">TABRIZTREND</div>
+  <!-- TITLE AREA: only one visible at a time -->
+  <div class="title-wrap" aria-hidden="false">
+    <h1 id="rotatingTitle" class="title main"><span class="pulse">TABRIZTREND</span></h1>
+  </div>
+
   <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
 
   <div class="bio">
@@ -248,12 +284,76 @@ a[href*="giphy"] { background: linear-gradient(90deg, #000, #333, #000); }
 </div>
 
 <script>
+/* ===== Titles configuration =====
+  Each item: text, gradient colors [g1,g2], glow color (used for text-shadow & pulse)
+  Title 0 is main (TABRIZ TREND) and will be slightly bolder/larger.
+*/
+const titles = [
+  { text: "TABRIZ TREND",    g1:"#39FF14", g2:"#00A86B", glow:"rgba(57,255,20,0.32)", main:true },
+  { text: "Tabriz Info",     g1:"#ff38ff", g2:"#9933ff", glow:"rgba(255,56,255,0.32)", main:false },
+  { text: "Tabriz Channel",  g1:"#80d4ff", g2:"#0066ff", glow:"rgba(128,212,255,0.28)", main:false },
+  { text: "Tabriz Shahrimiz",g1:"#cc33ff", g2:"#ff0033", glow:"rgba(204,51,255,0.28)", main:false }
+];
+
+const el = document.getElementById('rotatingTitle');
+let idx = 0;
+let animTimeout = null;
+
+/* helper to set title styles and text */
+function showTitle(i){
+  const t = titles[i];
+  // prepare class
+  el.classList.remove('show','hide','main','alt');
+  void el.offsetWidth; // force reflow to reset animation
+  // set content
+  el.innerHTML = `<span class="pulse">${t.text}</span>`;
+  // set style vars for gradient and glow
+  const grad = `linear-gradient(90deg, ${t.g1}, ${t.g2})`;
+  el.style.background = grad;
+  el.style.webkitBackgroundClip = 'text';
+  el.style.backgroundClip = 'text';
+  el.style.webkitTextFillColor = 'transparent';
+  el.style.setProperty('--glow', t.glow);
+  // font weight / size class
+  if(t.main){
+    el.classList.add('main');
+  } else {
+    el.classList.add('alt');
+  }
+  // start show animation
+  requestAnimationFrame(()=> el.classList.add('show'));
+}
+
+/* start cycle: show first immediately */
+showTitle(idx);
+
+/* cycle every 3 seconds with smooth hide->change->show */
+setInterval(()=>{
+  // hide current
+  el.classList.remove('show');
+  el.classList.add('hide');
+  // after short delay swap text then show
+  clearTimeout(animTimeout);
+  animTimeout = setTimeout(()=>{
+    idx = (idx + 1) % titles.length;
+    // reset hide and set new
+    el.classList.remove('hide');
+    showTitle(idx);
+  }, 500); // 500ms matches CSS transition durations for smoothness
+}, 3000);
+
+/* ABOUT BOX handlers */
 function openAbout() {
   document.getElementById("aboutBox").style.display = "flex";
 }
 function closeAbout() {
   document.getElementById("aboutBox").style.display = "none";
 }
+
+/* accessibility: close About with Escape */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === "Escape") closeAbout();
+});
 </script>
 
 </body>
