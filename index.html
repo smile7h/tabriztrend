@@ -6,162 +6,181 @@
 <title>TABRIZTREND</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Vazirmatn&display=swap" rel="stylesheet">
 <style>
-  body {
-    margin:0;
-    padding:0;
-    background: #0f1724;
-    color: #e6eef8;
-    font-family: "Vazirmatn", sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    direction: rtl;
-    text-align: center;
-  }
+body {
+  margin:0;
+  padding:0;
+  background: #0f1724;
+  color: #e6eef8;
+  font-family: "Vazirmatn", sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  direction: rtl;
+  text-align: center;
+}
 
-  .card {
-    background: rgba(255,255,255,0.02);
-    padding: 28px;
-    border-radius: 18px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-    max-width: 540px;
-    width: 90%;
-    transition: transform 0.3s ease;
-  }
+.card {
+  background: rgba(255,255,255,0.02);
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  max-width: 540px;
+  width: 90%;
+  transition: transform 0.3s ease;
+}
 
-  .logo-holder {
-    display:inline-block;
-    background:white;
-    padding:12px;
-    border-radius:12px;
-    margin-bottom:18px;
-    animation: floatLogo 3s ease-in-out infinite alternate;
-  }
+.logo-holder {
+  display:inline-block;
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:18px;
+  animation: floatLogo 3s ease-in-out infinite alternate;
+}
 
-  .logo {
-    width: 120px;
-    border-radius: 5%;
-    display:block;
-  }
+.logo-holder:hover {
+  transform: translateY(-6px) rotate(-3deg) scale(1.05);
+}
 
-  @keyframes floatLogo {
-    0% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(-2deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-  }
+.logo {
+  width: 120px;
+  border-radius: 5%;
+  display:block;
+}
 
-  .title {
-    font-size: 28px;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 2px;
-    margin: 8px 0;
-    animation: blinkTitle 2s infinite, glowTitle 2s infinite alternate;
-    text-shadow: 0 0 6px #fff;
-  }
+@keyframes floatLogo {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
 
-  @keyframes blinkTitle {
-    0%,50%,100% { color: #e6eef8; }
-    25%,75% { color: red; }
-  }
+.title {
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  margin: 8px 0;
+  animation: blinkTitle 2s infinite, glowTitle 2s infinite alternate, floatTitle 4s ease-in-out infinite;
+  text-shadow: 0 0 6px #fff, 0 0 10px #fff;
+}
 
-  @keyframes glowTitle {
-    0% { text-shadow: 0 0 6px #fff, 0 0 12px #fff; }
-    100% { text-shadow: 0 0 10px red, 0 0 20px red; }
-  }
+@keyframes blinkTitle {
+  0%,50%,100% { color: #e6eef8; }
+  25%,75% { color: red; }
+}
 
-  .subtitle {
-    color: rgba(255,255,255,0.7);
-    font-size: 14px;
-    margin-bottom: 18px;
-  }
+@keyframes glowTitle {
+  0% { text-shadow: 0 0 6px #fff, 0 0 12px #fff; }
+  100% { text-shadow: 0 0 15px red, 0 0 25px red; }
+}
 
-  .bio {
-    margin: 28px 0;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.5;
-  }
+@keyframes floatTitle {
+  0% { transform: translateY(0) rotateX(0deg); }
+  25% { transform: translateY(-5px) rotateX(3deg); }
+  50% { transform: translateY(0) rotateX(-2deg); }
+  75% { transform: translateY(-3px) rotateX(1deg); }
+  100% { transform: translateY(0) rotateX(0deg); }
+}
 
-  .links {
-    display:flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 0 auto;
-  }
+.subtitle {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
 
-  .links a {
-    display: block;
-    padding: 12px;
-    border-radius: 10px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    border: 1px solid rgba(255,255,255,0.04);
-    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    background-size: 200% 100%;
-    animation: gradientShift 6s ease-in-out infinite;
-  }
+.bio {
+  margin: 28px 0;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
 
-  .links a:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3);
-  }
+.links {
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 auto;
+}
 
-  /* انیمیشن شناور رنگ گرادینت */
-  @keyframes gradientShift {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 0%; }
-    100% { background-position: 0% 0%; }
-  }
+.links a {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 100%;
+  animation: gradientShift 6s ease-in-out infinite;
+  transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
 
-  /* گرادینت اختصاصی برای هر لینک */
-  a[href^="mailto"] { 
-    background: linear-gradient(90deg, #FFD700, #FF8C00); /* ایمیل زرد و نارنجی */
-  }       
-  a[href*="instagram"] { 
-    background: linear-gradient(90deg, #f58529, #8134af, #dd2a7b); /* اینستاگرام */
-  } 
-  a[href*="t.me"] { 
-    background: linear-gradient(90deg, #0088cc, #005f99); /* تلگرام */
-  } 
-  a[href*="wa.me"] { 
-    background: linear-gradient(90deg, #25d366, #a3f7c4); /* واتساپ */
-  } 
-  a[href*="giphy"] { 
-    background: linear-gradient(90deg, #000000, #333333); /* گیفی */
-  }
+.links a::before, .links a::after {
+  content:"";
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:100%;
+  background: rgba(255,255,255,0.15);
+  transform: skewX(-20deg);
+  transition: all 0.6s ease;
+}
 
-  footer {
-    font-size: 12px;
-    color: rgba(255,255,255,0.45);
-    margin-top: 18px;
-  }
+.links a::after {
+  top:0; left:-200%;
+  background: rgba(255,255,255,0.05);
+}
+
+.links a:hover::before { left:200%; }
+.links a:hover::after { left:200%; }
+
+.links a:hover {
+  transform: translateY(-5px) scale(1.06);
+  box-shadow: 0 0 25px rgba(255,255,255,0.5), 0 0 35px rgba(255,255,255,0.3);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* گرادینت لینک‌ها */
+a[href^="mailto"] { background: linear-gradient(90deg, #FFD700, #FF8C00); }
+a[href*="instagram"] { background: linear-gradient(90deg, #f58529, #8134af, #dd2a7b); }
+a[href*="t.me"] { background: linear-gradient(90deg, #0088cc, #005f99); }
+a[href*="wa.me"] { background: linear-gradient(90deg, #25d366, #a3f7c4); }
+a[href*="giphy"] { background: linear-gradient(90deg, #000000, #333333); }
+
+footer {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 18px;
+}
 </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo-holder">
-      <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg" alt="TabrizTrend Logo" />
-    </div>
-
-    <div class="title">TABRIZTREND</div>
-    <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
-    <div class="bio">
-      We're currently making some improvements to our site. Thanks for bearing with us <br/>
-      Click on one of the links below to contact us
-    </div>
-
-    <div class="links">
-      <a href="mailto:i@tabriztrend.ir">Email</a>
-      <a href="https://instagram.com/tabriz_info" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://t.me/yourtelegram" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://wa.me/989360189576" target="_blank" rel="noopener">Whatsapp</a>
-      <a href="https://giphy.com/tabrizchannel" target="_blank" rel="noopener">Giphy</a>
-    </div>
-
-    <footer>TabrizTrend © 2025</footer>
+<div class="card">
+  <div class="logo-holder">
+    <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg" alt="TabrizTrend Logo" />
   </div>
+
+  <div class="title">TABRIZ TREND</div>
+  <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
+  <div class="bio">
+    We're currently making some improvements to our site. Thanks for bearing with us<br/>
+    Click on one of the links below to contact us
+  </div>
+
+  <div class="links">
+    <a href="mailto:i@tabriztrend.ir">Email</a>
+    <a href="https://instagram.com/tabriz_info" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://t.me/yourtelegram" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://wa.me/989360189576" target="_blank" rel="noopener">Whatsapp</a>
+    <a href="https://giphy.com/tabrizchannel" target="_blank" rel="noopener">Giphy</a>
+  </div>
+
+  <footer>TabrizTrend © 2025</footer>
+</div>
 </body>
 </html>
