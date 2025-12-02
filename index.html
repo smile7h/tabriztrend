@@ -1,183 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tabriz Trend</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TABRIZTREND</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Vazirmatn&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        background: #000;
-        color: white;
-        overflow-x: hidden;
-    }
+body {
+  margin:0;
+  padding:0;
+  background: #0f1724;
+  color: #e6eef8;
+  font-family: "Vazirmatn", sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  direction: rtl;
+  text-align: center;
+}
 
-    /* ------------------ MAIN TITLE ROTATION ------------------ */
-    #mainTitle {
-        width: 100%;
-        text-align: center;
-        margin-top: 50px;
-        font-size: 48px;
-        font-weight: 800;
-        letter-spacing: 3px;
-        animation: floatTitle 4s ease-in-out infinite;
-    }
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.02);
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  max-width: 540px;
+  width: 90%;
+  transition: transform 0.3s ease;
+}
 
-    @keyframes floatTitle {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-        100% { transform: translateY(0); }
-    }
+/* LOGO */
+.logo-holder {
+  display:inline-block;
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:18px;
+  animation: floatLogo 3s ease-in-out infinite alternate;
+}
+.logo-holder:hover {
+  transform: translateY(-6px) rotate(-3deg) scale(1.05);
+}
+.logo { width: 120px; border-radius: 5%; display:block; }
 
-    .glow {
-        animation: glowAnim 2s infinite alternate;
-    }
+@keyframes floatLogo {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-2deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
 
-    @keyframes glowAnim {
-        from { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-        to { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
-    }
+/* TITLE */
 
-    /* ------------------ SIDE COLUMN BOXES ------------------ */
-    .container {
-        margin-top: 80px;
-        display: flex;
-        flex-direction: column;
-        width: 260px;
-        gap: 18px;
-        padding-left: 20px;
-    }
 
-    .box {
-        padding: 18px;
-        border-radius: 18px;
-        cursor: pointer;
-        font-size: 22px;
-        font-weight: 600;
-        transition: transform .3s;
-        animation: gradientMove 4s ease infinite;
-        background-size: 300% 300%;
-    }
-
-    .box:hover {
-        transform: scale(1.05);
-    }
-
-    @keyframes gradientMove {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* COLORS */
-    #giphy   { background: linear-gradient(90deg, #000, #444); }
-    #whatsapp{ background: linear-gradient(90deg, #07d100, #63ff63); }
-    #telegram{ background: linear-gradient(90deg, #0088cc, #005a87); }
-    #instagram{ background: linear-gradient(90deg, #ff006a, #ff8a00); }
-    #email{ background: linear-gradient(90deg, #ffa600, #ffdd55); }
-    #about{ background: linear-gradient(90deg, #1b3cff, #001133); }
-
-  /* TEXTS */
+/* TEXTS */
 .subtitle { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 18px; }
 .bio { margin: 28px 0; color: rgba(255,255,255,0.85); line-height: 1.5; }
 
-  
+/* LINKS */
+.links {
+  display:flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 auto;
+}
 
-    /* ------------------ ABOUT BOX MODAL ------------------ */
-    #aboutBox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.65);
-        backdrop-filter: blur(10px);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
+.links a {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgbaimport { useState, useEffect } from "react";
+    
+import { motion } from "framer-motion";
 
-    #aboutContent {
-        background: rgba(30,30,30,0.7);
-        padding: 30px;
-        border-radius: 20px;
-        width: 75%;
-        max-width: 650px;
-        animation: fadeIn .5s ease;
-        font-size: 20px;
-        line-height: 1.7;
-    }
+const titles = [
+  {
+    text: "TABRIZ TREND",
+    colors: ["#39FF14", "#000000"], // سبز فسفری و مشکی (تیتر اصلی)
+  },
+  {
+    text: "Tabriz Info",
+    colors: ["#ff38ff", "#9933ff"], // صورتی و بنفش
+  },
+  {
+    text: "Tabriz Channel",
+    colors: ["#80d4ff", "#0066ff"], // آبی کم‌رنگ و پررنگ
+  },
+  {
+    text: "Tabriz Shahrimiz",
+    colors: ["#cc33ff", "#ff0033"], // بنفش و قرمز
+  },
+];
 
-    @keyframes fadeIn {
-        from { transform: scale(0.9); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
+export default function App() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % titles.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const active = titles[index];
+
+  return (
+    <div className="w-full h-screen flex items-center justify-center bg-black">
+      <motion.h1
+        key={active.text}
+        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -20, scale: 0.9 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        className="text-5xl font-extrabold text-center select-none"
+        style={{
+          background: `linear-gradient(90deg, ${active.colors[0]}, ${active.colors[1]})`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          filter: "drop-shadow(0 0 12px rgba(255,255,255,0.4))",
+        }}
+      >
+        <motion.span
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          {active.text}
+        </motion.span>
+      </motion.h1>
+    </div>
+  );
+}
+(255,255,255,0.04);
+  overflow: hidden;
+  background-size: 400% 100%;
+  animation: gradientShift 8s ease-in-out infinite;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.links a:hover {
+  transform: translateY(-5px) scale(1.06);
+  box-shadow: 0 0 25px rgba(255,255,255,0.5);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* COLOR PALETTES */
+a[href^="mailto"] { background: linear-gradient(90deg, #ffcc00, #ff8800, #ffcc00); }
+a[href*="instagram"] { background: linear-gradient(90deg, #f58529, #8134af, #dd2a7b, #f58529); }
+a[href*="t.me"] { background: linear-gradient(90deg, #0088cc, #005f99, #0088cc); }
+a[href*="wa.me"] { background: linear-gradient(90deg, #25d366, #8fffdf, #25d366); }
+a[href*="giphy"] { background: linear-gradient(90deg, #000, #333, #000); }
+
+/* ABOUT BUTTON */
+.about-btn {
+  background: linear-gradient(90deg, #1e3c72, #2a5298, #1e3c72) !important;
+}
+
+/* ABOUT BOX */
+#aboutBox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.65);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.about-content {
+  background: rgba(0,0,0,0.55);
+  border:1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(15px);
+  border-radius: 18px;
+  padding: 22px;
+  width: 90%;
+  max-width: 480px;
+  line-height: 1.8;
+  color: #e6eef8;
+  box-shadow: 0 0 18px rgba(255,255,255,0.15);
+  animation: popUp 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@keyframes popUp {
+  0% { transform: scale(0.7) translateY(30px); opacity:0; }
+  100% { transform: scale(1) translateY(0); opacity:1; }
+}
+
 </style>
 </head>
 <body>
 
-<h1 id="mainTitle" class="glow">TABRIZ TREND</h1>
+<div class="card">
+
+  <div class="logo-holder">
+    <img class="logo"
+         src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg">
+  </div>
+
+  <div class="title">TABRIZTREND</div>
+  <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
 
   <div class="bio">
-    We're currently making some improvements to our site. Thanks for bearing with us
-Click on one of the links below to contact us<br>
+    We're currently making some improvements to our site.<br>Click a link below:
   </div>
-  
 
-<div class="container">
-    <div id="giphy" class="box">GIPHY</div>
-    <div id="whatsapp" class="box">Whatsapp</div>
-    <div id="telegram" class="box">Telegram</div>
-    <div id="instagram" class="box">Instagram</div>
-    <div id="email" class="box">Email</div>
-    <div id="about" class="box" onclick="openAbout()">About</div>
+  <div class="links">
+    <a href="mailto:i@tabriztrend.ir">Email</a>
+    <a href="https://instagram.com/tabriz_info" target="_blank">Instagram</a>
+    <a href="https://t.me/yourtelegram" target="_blank">Telegram</a>
+    <a href="https://wa.me/989360189576" target="_blank">Whatsapp</a>
+    <a href="https://giphy.com/tabrizchannel" target="_blank">Giphy</a>
+
+    <!-- NEW ABOUT BUTTON -->
+    <a class="about-btn" href="#" onclick="openAbout(); return false;">About</a>
+  </div>
+
+  <footer>TabrizTrend © 2025</footer>
 </div>
 
+<!-- ABOUT BOX -->
 <div id="aboutBox" onclick="closeAbout()">
-    <div id="aboutContent">
-        Tabriz Trend is a social and news media platform based in the city of Tabriz.<br><br>
-        We focus on sharing the latest news, events, culture, tourism, and everyday happenings of Tabriz and Iranian Azerbaijan.<br><br>
-        Our main activities are on Instagram and Telegram, where we introduce the beauty of Tabriz, highlight its traditions and customs, and provide up‑to‑date social content.<br><br>
-        With a commitment to accurate reporting and cultural representation, Tabriz Trend aims to showcase the unique identity of our city.
-    </div>
+  <div class="about-content">
+    Tabriz Trend is a social and news media platform based in the city of Tabriz.
+    We focus on sharing the latest news, events, culture, tourism, and everyday happenings of Tabriz and Iranian Azerbaijan.<br><br>
+    Our main activities are carried out on Instagram and Telegram, where we introduce the beauty of Tabriz, highlight its traditions and customs, and provide up-to-date local news and social content.<br><br>
+    With a commitment to accurate reporting and cultural representation, Tabriz Trend aims to connect people with the heart of Tabriz and showcase the unique identity of our city.
+  </div>
 </div>
 
 <script>
-/* -------- TITLE ROTATION -------- */
-const titles = [
-    { text: "TABRIZ TREND", colors: ["white","white"] },
-    { text: "Tabriz Info", colors: ["#ff00cc","#b300ff"] },
-    { text: "Tabriz Channel", colors: ["#8cd3ff","#0066ff"] },
-    { text: "Tabriz Shahrimiz", colors: ["#ff0099","#ff3300"] }
-];
-
-let index = 0;
-const title = document.getElementById("mainTitle");
-
-function cycleTitle() {
-    index = (index + 1) % titles.length;
-    const t = titles[index];
-
-    title.style.opacity = 0;
-    setTimeout(() => {
-        title.innerText = t.text;
-        title.style.color = t.colors[0];
-        title.style.textShadow = `0 0 15px ${t.colors[1]}`;
-        title.style.opacity = 1;
-    }, 500);
-}
-
-setInterval(cycleTitle, 3000);
-
-/* ABOUT BOX */
 function openAbout() {
-    document.getElementById("aboutBox").style.display = "flex";
+  document.getElementById("aboutBox").style.display = "flex";
 }
-
 function closeAbout() {
-    document.getElementById("aboutBox").style.display = "none";
+  document.getElementById("aboutBox").style.display = "none";
 }
 </script>
 
