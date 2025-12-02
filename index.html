@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>TABRIZTREND</title>
+  <!-- فونت شیک برای تیتر و متن -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Vazirmatn&display=swap" rel="stylesheet">
   <style>
     body {
       margin:0;
@@ -18,6 +20,7 @@
       direction: rtl;
       text-align: center;
     }
+
     .card {
       background: rgba(255,255,255,0.02);
       padding: 28px;
@@ -25,49 +28,70 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.6);
       max-width: 540px;
       width: 90%;
+      transition: transform 0.3s ease;
     }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
     .logo-holder {
       display:inline-block;
       background:white;
       padding:12px;
       border-radius:12px;
       margin-bottom:18px;
-      animation: fadeLogo 6s infinite;
+      animation: fadeLogo 6s ease-in-out infinite;
     }
+
     .logo {
       width: 120px;
       border-radius: 5%;
+      display:block;
     }
+
     @keyframes fadeLogo {
-      0%, 33% { opacity: 1; }
-      50%, 83% { opacity: 0; }
-      100% { opacity: 1; }
+      0%, 33% { opacity: 1; transform: scale(1); }
+      50%, 83% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
     }
+
     .title {
-      font-size: 22px;
-      letter-spacing: 1px;
+      font-size: 28px;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 2px;
       margin: 8px 0;
-      animation: blinkTitle 2s infinite;
+      animation: blinkTitle 2s infinite, glowTitle 2s infinite alternate;
+      text-shadow: 0 0 6px #fff;
     }
+
     @keyframes blinkTitle {
       0%, 50%, 100% { color: #e6eef8; }
       25%, 75% { color: red; }
     }
+
+    @keyframes glowTitle {
+      0% { text-shadow: 0 0 6px #fff, 0 0 12px #fff; }
+      100% { text-shadow: 0 0 10px red, 0 0 20px red; }
+    }
+
     .subtitle {
       color: rgba(255,255,255,0.7);
       font-size: 14px;
       margin-bottom: 18px;
     }
+
     .bio {
       margin: 28px 0;
       color: rgba(255,255,255,0.85);
       line-height: 1.5;
     }
+
     .links {
       display:flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .links a {
       display: block;
       padding: 12px;
@@ -76,19 +100,32 @@
       text-decoration: none;
       font-weight: 600;
       border: 1px solid rgba(255,255,255,0.04);
-      transition: all 0.18s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
+
     .links a:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 18px rgba(0,0,0,0.5);
     }
 
-    /* رنگ اختصاصی برای هر لینک */
-    a[href^="mailto"] { background: #00bfff; }       /* ایمیل آبی آسمانی */
-    a[href*="instagram"] { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); } /* اینستاگرام پالت رنگی */
-    a[href*="t.me"] { background: #0088cc; }         /* تلگرام آبی */
-    a[href*="wa.me"] { background: #25d366; }       /* واتساپ سبز */
-    a[href*="giphy"] { background: #000000; }       /* گیفی مشکی */
+    /* گرادینت اختصاصی برای هر لینک */
+    a[href^="mailto"] { 
+      background: linear-gradient(90deg, #a0d8ff, #ffffff); /* ایمیل آبی روشن و نزدیک سفید */
+    }       
+    a[href*="instagram"] { 
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); /* همان پالت قبلی */
+    } 
+    a[href*="t.me"] { 
+      background: linear-gradient(90deg, #0088cc, #005f99); /* تلگرام آبی و پر رنگ تر */
+    } 
+    a[href*="wa.me"] { 
+      background: linear-gradient(90deg, #25d366, #a3f7c4); /* واتساپ سبز و سبز کمرنگ */
+    } 
+    a[href*="giphy"] { 
+      background: linear-gradient(90deg, #000000, #333333); /* گیفی مشکی و مشکی روشنتر */
+    }
 
     footer {
       font-size: 12px;
@@ -109,6 +146,19 @@
       We're currently making some improvements to our site. Thanks for bearing with us!<br/>
       Click on one of the links below to contact us:
     </div>
+
+    <div class="links">
+      <a href="mailto:i@tabriztrend.ir">Email</a>
+      <a href="https://instagram.com/tabriz_info" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://t.me/yourtelegram" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://wa.me/989360189576" target="_blank" rel="noopener">Whatsapp</a>
+      <a href="https://giphy.com/tabrizchannel" target="_blank" rel="noopener">Giphy</a>
+    </div>
+
+    <footer>TabrizTrend © 2025</footer>
+  </div>
+</body>
+</html>    </div>
 
     <div class="links">
       <a href="mailto:i@tabriztrend.ir">Email</a>
