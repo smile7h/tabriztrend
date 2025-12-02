@@ -26,20 +26,42 @@
       max-width: 540px;
       width: 90%;
     }
+    .logo-holder {
+      display:inline-block;
+      background:white;
+      padding:12px;
+      border-radius:12px;
+      margin-bottom:18px;
+      animation: fadeLogo 6s infinite;
+    }
     .logo {
       width: 120px;
       border-radius: 5%;
-      margin-bottom: 18px;
+    }
+    @keyframes fadeLogo {
+      0%, 33% { opacity: 1; }
+      50%, 83% { opacity: 0; }
+      100% { opacity: 1; }
     }
     .title {
       font-size: 22px;
       letter-spacing: 1px;
       margin: 8px 0;
+      animation: blinkTitle 2s infinite;
+    }
+    @keyframes blinkTitle {
+      0%, 50%, 100% { color: #e6eef8; }
+      25%, 75% { color: red; }
     }
     .subtitle {
       color: rgba(255,255,255,0.7);
       font-size: 14px;
       margin-bottom: 18px;
+    }
+    .bio {
+      margin: 28px 0;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
     }
     .links {
       display:flex;
@@ -50,8 +72,7 @@
       display: block;
       padding: 12px;
       border-radius: 10px;
-      background: rgba(255,255,255,0.03);
-      color: #e6eef8;
+      color: #fff;
       text-decoration: none;
       font-weight: 600;
       border: 1px solid rgba(255,255,255,0.04);
@@ -61,25 +82,14 @@
       transform: translateY(-3px);
       box-shadow: 0 6px 18px rgba(0,0,0,0.5);
     }
-    .links a:active::after {
-      content:"";
-      position:absolute;
-      top:50%; left:50%;
-      transform: translate(-50%,-50%);
-      width:0; height:0;
-      border-radius:50%;
-      background: rgba(0, 230, 118, 0.3);
-      animation: clickEffect 0.5s ease-out;
-    }
-    @keyframes clickEffect {
-      0% { width:0; height:0; opacity:1; }
-      100% { width:300px; height:300px; opacity:0; }
-    }
-    .bio {
-      margin: 28px 0;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.5;
-    }
+
+    /* رنگ اختصاصی برای هر لینک */
+    a[href^="mailto"] { background: #00bfff; }       /* ایمیل آبی آسمانی */
+    a[href*="instagram"] { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); } /* اینستاگرام پالت رنگی */
+    a[href*="t.me"] { background: #0088cc; }         /* تلگرام آبی */
+    a[href*="wa.me"] { background: #25d366; }       /* واتساپ سبز */
+    a[href*="giphy"] { background: #000000; }       /* گیفی مشکی */
+
     footer {
       font-size: 12px;
       color: rgba(255,255,255,0.45);
@@ -89,12 +99,16 @@
 </head>
 <body>
   <div class="card">
-    <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg" alt="TabrizTrend Logo" />
+    <div class="logo-holder">
+      <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg" alt="TabrizTrend Logo" />
+    </div>
 
     <div class="title">TABRIZTREND</div>
     <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
-    <div class="bio"> We're currently making some improvements to our site. Thanks for bearing with us!
-Click on one of the links below to contact us:</div>
+    <div class="bio">
+      We're currently making some improvements to our site. Thanks for bearing with us!<br/>
+      Click on one of the links below to contact us:
+    </div>
 
     <div class="links">
       <a href="mailto:i@tabriztrend.ir">Email</a>
