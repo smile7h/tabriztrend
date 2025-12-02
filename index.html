@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TABRIZTREND</title>
+  <title>TABRIZ TREND</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Vazirmatn&display=swap" rel="stylesheet">
   <style>
     body {
@@ -36,7 +36,12 @@
       padding:12px;
       border-radius:12px;
       margin-bottom:18px;
-      animation: fadeLogo 6s ease-in-out infinite;
+      animation: fadeLogo 9s ease-in-out infinite;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-holder:hover {
+      transform: translateY(-5px) rotate(-2deg);
     }
 
     .logo {
@@ -52,11 +57,11 @@
     }
 
     .title {
-      font-size: 28px;
+      font-size: 38px;
       font-family: 'Montserrat', sans-serif;
       letter-spacing: 2px;
       margin: 8px 0;
-      animation: blinkTitle 2s infinite, glowTitle 2s infinite alternate;
+      animation: blinkTitle 4s infinite, glowTitle 4s infinite alternate;
       text-shadow: 0 0 6px #fff;
     }
 
@@ -97,12 +102,11 @@
       text-decoration: none;
       font-weight: 600;
       border: 1px solid rgba(255,255,255,0.04);
-      transition: all 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
-    /* افکت شناور و glow هنگام هاور */
     .links a:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 0 15px rgba(255,255,255,0.5), 0 0 25px rgba(255,255,255,0.3);
@@ -138,11 +142,11 @@
       <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg" alt="TabrizTrend Logo" />
     </div>
 
-    <div class="title">TABRIZTREND</div>
+    <div class="title">TABRIZ TREND</div>
     <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
     <div class="bio">
-      We're currently making some improvements to our site. Thanks for bearing with us!<br/>
-      Click on one of the links below to contact us
+      We're currently making some improvements to our site. Thanks for bearing with us <br/>
+      Click on one of the links below to contact us:
     </div>
 
     <div class="links">
