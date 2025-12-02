@@ -1,113 +1,109 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TabrizTrend</title>
-<style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TABRIZTREND</title>
+  <style>
     body {
-        font-family: sans-serif;
-        margin: 0;
-        background: #0f0f0f;
-        color: #fff;
-        direction: rtl;
-        text-align: center;
+      margin:0;
+      padding:0;
+      background: #0f1724;
+      color: #e6eef8;
+      font-family: "Vazirmatn", sans-serif;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      direction: rtl;
+      text-align: center;
     }
-
-    header {
-        padding: 30px 0;
-    }
-
-    header img {
-        width: 120px;
-        height: auto;
-        border-radius: 20px;
-    }
-
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
     .card {
-        background: #111;
-        border: 2px solid #18ff68;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 18px;
-        cursor: pointer;
-        transition: 0.3s;
-        position: relative;
-        overflow: hidden;
+      background: rgba(255,255,255,0.02);
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      max-width: 540px;
+      width: 90%;
     }
-
-    .card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 0 15px #18ff68;
+    .logo {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 18px;
     }
-
-    /* جلوه انیمیشن هنگام کلیک */
-    .card:active::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(24,255,104,0.3);
-        animation: clickEffect 0.5s ease-out;
+    .title {
+      font-size: 22px;
+      letter-spacing: 1px;
+      margin: 8px 0;
     }
-
+    .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+    .links {
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .links a {
+      display: block;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      color: #e6eef8;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: all 0.18s;
+    }
+    .links a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
+    .links a:active::after {
+      content:"";
+      position:absolute;
+      top:50%; left:50%;
+      transform: translate(-50%,-50%);
+      width:0; height:0;
+      border-radius:50%;
+      background: rgba(0, 230, 118, 0.3);
+      animation: clickEffect 0.5s ease-out;
+    }
     @keyframes clickEffect {
-        0% { width: 0; height: 0; opacity: 1; }
-        100% { width: 300px; height: 300px; opacity: 0; }
+      0% { width:0; height:0; opacity:1; }
+      100% { width:300px; height:300px; opacity:0; }
     }
-
-    a {
-        text-decoration: none;
-        color: #18ff68;
-        font-size: 18px;
+    .bio {
+      margin: 18px 0;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
     }
-
     footer {
-        margin: 40px 0;
-        font-size: 14px;
-        opacity: 0.6;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 18px;
     }
-</style>
+  </style>
 </head>
 <body>
+  <div class="card">
+    <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg" alt="TabrizTrend Logo" />
 
-<header>
-    <img src="YOUR_LOGO.png" alt="TabrizTrend Logo" />
-</header>
+    <div class="title">TABRIZTREND</div>
+    <div class="subtitle">با سلام و قدردانی از حضور شما</div>
+    <div class="bio">به صفحه رسمی ما خوش آمدید. برای ارتباط سریع، روی لینک‌های زیر کلیک کنید:</div>
 
-<div class="container">
-
-    <div class="card">
-        <a href="mailto:i@tabriztrend.ir">ایمیل من: i@tabriztrend.ir</a>
+    <div class="links">
+      <a href="mailto:i@tabriztrend.ir">ایمیل: email</a>
+      <a href="https://instagram.com/tabriz_info" target="_blank" rel="noopener">اینستاگرام: Instagram</a>
+      <a href="https://t.me/yourtelegram" target="_blank" rel="noopener">تلگرام: telegram</a>
+      <a href="https://wa.me/989360189576" target="_blank" rel="noopener">واتساپ: Whatsapp</a>
+      <a href="https://giphy.com/tabrizchannel" target="_blank" rel="noopener">گیفی: Giphy</a>
     </div>
 
-    <div class="card">
-        <a href="https://instagram.com/tabriztrend">اینستاگرام</a>
-    </div>
-
-    <div class="card">
-        <a href="https://t.me/tabriztrend">تلگرام</a>
-    </div>
-
-    <div class="card">
-        <a href="https://wa.me/989360189576">واتساپ</a>
-    </div>
-
-</div>
-
-<footer>
-    TabrizTrend © 2025
-</footer>
-
+    <footer>TabrizTrend © 2025</footer>
+  </div>
 </body>
 </html>
