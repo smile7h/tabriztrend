@@ -88,7 +88,7 @@ body {
   width:160px; /* کمی بزرگتر */
   height:160px;
   margin:20px auto;
-  border-radius:50%;
+  border-radius:12px; /* گوشه‌های کمی گرد */
   background: linear-gradient(145deg, #f0f0f0, #d9d9d9);
   box-shadow: 6px 6px 12px #b0b0b0, -6px -6px 12px #ffffff; /* برجسته سه بعدی */
   display:flex;
@@ -102,7 +102,7 @@ body {
 .static-image-holder img {
   width:140px;
   height:140px;
-  border-radius:50%;
+  border-radius:12px; /* گوشه‌های کمی گرد */
   animation: imageGlow 3s ease-in-out infinite alternate;
 }
 
@@ -293,7 +293,6 @@ let index = 0;
 function rotateTitle(){
   const item = titles[index];
   titleEl.innerText = item.text;
-
   titleEl.style.animation = "none";
   void titleEl.offsetWidth;
 
