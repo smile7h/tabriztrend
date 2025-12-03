@@ -35,7 +35,7 @@ body {
 /* === LOGO === */
 .logo-holder {
   padding:0;
-  margin:0 auto 18px auto; /* مرکز کردن لوگو */
+  margin:0 auto 18px auto;
   width:120px;
   display:inline-block;
   position:relative;
@@ -83,47 +83,33 @@ body {
   100%{transform:translateY(0);}
 }
 
-/* === SECOND IMAGE WITH FADE GRADIENT === */
+/* === SECOND IMAGE === */
 .static-image-holder {
   width:100%;
   height:auto;
   padding:10px 0;
   margin:20px auto;
-  border-radius:12px; /* گوشه‌های کمی گرد */
+  border-radius:12px;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
   position:relative;
-  background: linear-gradient(90deg, #39ff14, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00);
-  background-size:200% 200%;
+  background-color:#39ff14; /* شروع با اولین رنگ */
+  transition: background-color 4s ease-in-out;
 }
 
 .static-image-holder img {
   height:auto;
   max-width:100%;
-  border-radius:6px; /* گوشه‌های کمی گرد */
+  border-radius:6px;
   animation: subtleShake 2s infinite alternate;
 }
 
-/* لرزش کوتاه تصویر دوم */
 @keyframes subtleShake {
   0% { transform:translateX(0); }
   50% { transform:translateX(2px); }
   100% { transform:translateX(0); }
-}
-
-/* تغییر رنگ آرام و ملایم با فید بین رنگ‌ها */
-@keyframes gradientFade {
-  0% { background: linear-gradient(90deg, #39ff14, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00); }
-  25% { background: linear-gradient(90deg, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00, #39ff14); }
-  50% { background: linear-gradient(90deg, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00, #39ff14, #ff8c00); }
-  75% { background: linear-gradient(90deg, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00, #39ff14, #ff8c00, #1e90ff); }
-  100% { background: linear-gradient(90deg, #39ff14, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00); }
-}
-
-.static-image-holder {
-  animation: gradientFade 4s ease-in-out infinite;
 }
 
 /* === ROTATING TITLES === */
@@ -247,7 +233,7 @@ a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
     <img class="logo" src="logo.png">
   </div>
 
-  <!-- Second Image with Gradient Background -->
+  <!-- Second Image -->
   <div class="static-image-holder">
     <img src="alllogo1.png" alt="All Logo">
   </div>
@@ -288,22 +274,18 @@ function closeAbout(){ document.getElementById("aboutBox").style.display="none";
 
 /* === ROTATING TITLES SYSTEM === */
 const titleEl = document.getElementById("mainTitle");
-
 const titles = [
   { text:"TABRIZ TREND", class:"main" },
   { text:"Tabriz Info", class:"pinkpurple" },
   { text:"Tabriz Channel", class:"blue" },
   { text:"Tabriz Shahrimiz", class:"purplered" }
 ];
-
 let index = 0;
-
 function rotateTitle(){
   const item = titles[index];
   titleEl.innerText = item.text;
   titleEl.style.animation = "none";
   void titleEl.offsetWidth;
-
   if(item.class === "main"){
     titleEl.style.fontSize="28px";
     titleEl.style.animation="floatTitle 3.5s infinite, glowMain 1.7s infinite alternate";
@@ -322,11 +304,20 @@ function rotateTitle(){
     titleEl.style.fontSize="25px";
     titleEl.style.animation="neonPurpleRed 2s infinite, floatTitle 3.5s infinite";
   }
-
   index = (index + 1) % titles.length;
 }
-
 setInterval(rotateTitle,3000);
+
+/* === BACKGROUND COLOR CYCLE FOR STATIC IMAGE === */
+const bgColors = ["#39ff14","#ff8c00","#1e90ff","#00ff00","#ff0000","#800080","#ff69b4","#ffffff","#ffff00"];
+let colorIndex = 0;
+const staticHolder = document.querySelector('.static-image-holder');
+
+setInterval(() => {
+  colorIndex = (colorIndex + 1) % bgColors.length;
+  staticHolder.style.backgroundColor = bgColors[colorIndex];
+}, 4000);
+
 </script>
 
 </body>
