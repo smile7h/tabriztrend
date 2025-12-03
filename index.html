@@ -37,6 +37,9 @@ body {
   padding:12px;
   border-radius:12px;
   margin-bottom:18px;
+  width:120px; /* عرض کادر لوگو */
+  overflow:hidden; /* محدود کردن کادر حرکت تصویر */
+  position:relative;
   animation: floatLogo 3s ease-in-out infinite alternate;
 }
 .logo-holder:hover { transform:translateY(-6px) rotate(-3deg) scale(1.05); }
@@ -54,18 +57,20 @@ body {
 
 /* === FLOATING IMAGE === */
 .floating-image {
-  width:200px; /* اندازه ثابت */
-  margin:10px auto;
+  width:120px; /* هم‌اندازه لوگو */
+  height:auto;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
   border-radius:12px;
   backdrop-filter: blur(8px);
   background: rgba(255,255,255,0.2);
-  position: relative;
-  animation: floatImage 20s linear infinite;
+  animation: floatImage 7s linear infinite;
 }
 
 @keyframes floatImage {
   0% { left:100%; }
-  100% { left:-200px; }
+  100% { left:0%; }
 }
 
 /* === ROTATING TITLES === */
@@ -186,12 +191,12 @@ a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
 <div class="card">
 
   <div class="logo-holder">
-    <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg">
-  </div>
+    <img class="logo" src="logo.png">
 
-  <!-- Floating Image -->
-  <div class="floating-image">
-    <img src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/your-floating-image.png" style="width:100%; border-radius:12px;">
+    <!-- Floating Animated Image -->
+    <div class="floating-image">
+      <img src="alllogo.png" style="width:100%; border-radius:12px;">
+    </div>
   </div>
 
   <!-- Rotating Title -->
