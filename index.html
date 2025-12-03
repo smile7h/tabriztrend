@@ -1,172 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tabriz Trend</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TABRIZTREND</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Vazirmatn&display=swap" rel="stylesheet">
+
 <style>
-    body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        background: #000;
-        color: white;
-        overflow-x: hidden;
-    }
+body {
+  margin:0;
+  padding:0;
+  background:#0f1724;
+  color:#e6eef8;
+  font-family:"Vazirmatn", sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  text-align:center;
+}
 
-    /* ------------------ MAIN TITLE ROTATION ------------------ */
-    #mainTitle {
-        width: 100%;
-        text-align: center;
-        margin-top: 50px;
-        font-size: 48px;
-        font-weight: 800;
-        letter-spacing: 3px;
-        animation: floatTitle 4s ease-in-out infinite;
-    }
+/* === CARD === */
+.card {
+  background:rgba(255,255,255,0.02);
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.6);
+  width:90%;
+  max-width:540px;
+}
 
-    @keyframes floatTitle {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-8px); }
-        100% { transform: translateY(0); }
-    }
+/* === LOGO === */
+.logo-holder {
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:18px;
+  animation: floatLogo 3s ease-in-out infinite alternate;
+}
+.logo-holder:hover { transform:translateY(-6px) rotate(-3deg) scale(1.05); }
 
-    .glow {
-        animation: glowAnim 2s infinite alternate;
-    }
+.logo {
+  width:120px;
+  border-radius:5%;
+}
 
-    @keyframes glowAnim {
-        from { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-        to { text-shadow: 0 0 25px rgba(255,255,255,0.9); }
-    }
+@keyframes floatLogo {
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+  100%{transform:translateY(0);}
+}
 
-    /* ------------------ SIDE COLUMN BOXES ------------------ */
-    .container {
-        margin-top: 80px;
-        display: flex;
-        flex-direction: column;
-        width: 260px;
-        gap: 18px;
-        padding-left: 20px;
-    }
+/* === FLOATING IMAGE === */
+.floating-image {
+  width:200px; /* اندازه ثابت */
+  margin:10px auto;
+  border-radius:12px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.2);
+  position: relative;
+  animation: floatImage 20s linear infinite;
+}
 
-    .box {
-        padding: 18px;
-        border-radius: 18px;
-        cursor: pointer;
-        font-size: 22px;
-        font-weight: 600;
-        transition: transform .3s;
-        animation: gradientMove 4s ease infinite;
-        background-size: 300% 300%;
-    }
+@keyframes floatImage {
+  0% { left:100%; }
+  100% { left:-200px; }
+}
 
-    .box:hover {
-        transform: scale(1.05);
-    }
+/* === ROTATING TITLES === */
+.title {
+  font-size:27px;
+  font-family:'Montserrat', sans-serif;
+  letter-spacing:2px;
+  margin:10px 0;
+  font-weight:700;
+  transition:0.5s ease;
+  padding:10px 0;
+  display:inline-block;
+  text-shadow:0 0 15px rgba(255,255,255,0.7);
+  animation: floatTitle 3.5s ease-in-out infinite;
+}
 
-    @keyframes gradientMove {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+@keyframes floatTitle {
+  0% { transform:translateY(0); }
+  50% { transform:translateY(-6px); }
+  100% { transform:translateY(0); }
+}
 
-    /* COLORS */
-    #giphy   { background: linear-gradient(90deg, #000, #444); }
-    #whatsapp{ background: linear-gradient(90deg, #07d100, #63ff63); }
-    #telegram{ background: linear-gradient(90deg, #0088cc, #005a87); }
-    #instagram{ background: linear-gradient(90deg, #ff006a, #ff8a00); }
-    #email{ background: linear-gradient(90deg, #ffa600, #ffdd55); }
-    #about{ background: linear-gradient(90deg, #1b3cff, #001133); }
+/* رنگ‌های چشمک‌زن */
+@keyframes neonPinkPurple {
+  0%,100% { color:#ff6bff; text-shadow:0 0 15px #ff00ff; }
+  50% { color:#a066ff; text-shadow:0 0 20px #b300ff; }
+}
+@keyframes neonBlue {
+  0%,100% { color:#7cd2ff; text-shadow:0 0 18px #1da1ff; }
+  50% { color:#1da1ff; text-shadow:0 0 25px #0066ff; }
+}
+@keyframes neonPurpleRed {
+  0%,100% { color:#ff4f8b; text-shadow:0 0 18px #b300ff; }
+  50% { color:#d400ff; text-shadow:0 0 25px #ff0037; }
+}
 
-    /* ------------------ ABOUT BOX MODAL ------------------ */
-    #aboutBox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.65);
-        backdrop-filter: blur(10px);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
+/* === SUBTITLE === */
+.subtitle {
+  color:rgba(255,255,255,0.65);
+  font-size:13px;
+  margin-bottom:18px;
+}
 
-    #aboutContent {
-        background: rgba(30,30,30,0.7);
-        padding: 30px;
-        border-radius: 20px;
-        width: 75%;
-        max-width: 650px;
-        animation: fadeIn .5s ease;
-        font-size: 20px;
-        line-height: 1.7;
-    }
+/* === BIO === */
+.bio {
+  margin:25px 0;
+  color:rgba(255,255,255,0.85);
+  line-height:1.6;
+}
 
-    @keyframes fadeIn {
-        from { transform: scale(0.9); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
+/* === LINKS – نسخهٔ قبلی با افکت شیک === */
+.links {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin:0 auto;
+}
+
+.links a {
+  padding:12px;
+  border-radius:10px;
+  color:white;
+  font-weight:600;
+  text-decoration:none;
+  display:block;
+  border:1px solid rgba(255,255,255,0.05);
+  position:relative;
+  overflow:hidden;
+  background-size:300% 100%;
+  transition:all 0.4s ease;
+}
+
+.links a:hover {
+  transform:translateY(-5px) scale(1.05);
+  box-shadow:0 0 20px rgba(255,255,255,0.35);
+}
+
+/* گرادیانت‌ها */
+a[href^="mailto"] { background:linear-gradient(90deg,#ffcc00,#ff8800,#ffcc00); }
+a[href*="instagram"] { background:linear-gradient(90deg,#f58529,#8134af,#dd2a7b,#f58529); }
+a[href*="t.me"] { background:linear-gradient(90deg,#0088cc,#005f99,#0088cc); }
+a[href*="wa.me"] { background:linear-gradient(90deg,#25d366,#8fffdf,#25d366); }
+a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
+.about-btn { background:linear-gradient(90deg,#1e3c72,#2a5298,#1e3c72) !important; }
+
+/* ABOUT BOX */
+#aboutBox{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.65);
+}
+
+.about-content{
+  background:rgba(0,0,0,0.55);
+  border:1px solid rgba(255,255,255,0.18);
+  padding:20px;
+  border-radius:18px;
+  max-width:480px;
+  line-height:1.8;
+  color:#e6eef8;
+  box-shadow:0 0 18px rgba(255,255,255,0.15);
+  animation: popUp .4s ease;
+}
+
+@keyframes popUp {
+  0%{ transform:scale(0.7); opacity:0; }
+  100%{ transform:scale(1); opacity:1; }
+}
 </style>
 </head>
+
 <body>
 
-<h1 id="mainTitle" class="glow">TABRIZ TREND</h1>
+<div class="card">
 
-<div class="container">
-    <div id="giphy" class="box">GIPHY</div>
-    <div id="whatsapp" class="box">Whatsapp</div>
-    <div id="telegram" class="box">Telegram</div>
-    <div id="instagram" class="box">Instagram</div>
-    <div id="email" class="box">Email</div>
-    <div id="about" class="box" onclick="openAbout()">About</div>
+  <div class="logo-holder">
+    <img class="logo" src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/Picsart_25-10-21_21-18-54-417.jpg">
+  </div>
+
+  <!-- Floating Image -->
+  <div class="floating-image">
+    <img src="https://raw.githubusercontent.com/smile7h/tabriztrend/main/your-floating-image.png" style="width:100%; border-radius:12px;">
+  </div>
+
+  <!-- Rotating Title -->
+  <div id="mainTitle" class="title">TABRIZ TREND</div>
+
+  <div class="subtitle"> TABRIZ TREND OFFICIAL WEBSITE </div>
+
+  <div class="bio">
+    We're currently making some improvements to our site.<br>
+    Click a link below:
+  </div>
+
+  <div class="links">
+    <a href="mailto:i@tabriztrend.ir">Email</a>
+    <a href="https://instagram.com/tabriz_info" target="_blank">Instagram</a>
+    <a href="https://t.me/yourtelegram" target="_blank">Telegram</a>
+    <a href="https://wa.me/989360189576" target="_blank">Whatsapp</a>
+    <a href="https://giphy.com/tabrizchannel" target="_blank">Giphy</a>
+    <a class="about-btn" href="#" onclick="openAbout(); return false;">About</a>
+  </div>
+
+  <footer style="margin-top:18px;opacity:0.6;">TabrizTrend © 2025</footer>
 </div>
 
+<!-- ABOUT BOX -->
 <div id="aboutBox" onclick="closeAbout()">
-    <div id="aboutContent">
-        Tabriz Trend is a social and news media platform based in the city of Tabriz.<br><br>
-        We focus on sharing the latest news, events, culture, tourism, and everyday happenings of Tabriz and Iranian Azerbaijan.<br><br>
-        Our main activities are on Instagram and Telegram, where we introduce the beauty of Tabriz, highlight its traditions and customs, and provide up‑to‑date social content.<br><br>
-        With a commitment to accurate reporting and cultural representation, Tabriz Trend aims to showcase the unique identity of our city.
-    </div>
+  <div class="about-content">
+    Tabriz Trend is a social and news media platform based in the city of Tabriz.
+    We focus on sharing the latest news, events, culture, tourism, and everyday happenings of Tabriz.
+  </div>
 </div>
 
 <script>
-/* -------- TITLE ROTATION -------- */
+function openAbout(){ document.getElementById("aboutBox").style.display="flex"; }
+function closeAbout(){ document.getElementById("aboutBox").style.display="none"; }
+
+/* === ROTATING TITLES SYSTEM === */
+const titleEl = document.getElementById("mainTitle");
+
 const titles = [
-    { text: "TABRIZ TREND", colors: ["white","white"] },
-    { text: "Tabriz Info", colors: ["#ff00cc","#b300ff"] },
-    { text: "Tabriz Channel", colors: ["#8cd3ff","#0066ff"] },
-    { text: "Tabriz Shahrimiz", colors: ["#ff0099","#ff3300"] }
+  { text:"TABRIZ TREND", class:"main" },
+  { text:"Tabriz Info", class:"pinkpurple" },
+  { text:"Tabriz Channel", class:"blue" },
+  { text:"Tabriz Shahrimiz", class:"purplered" }
 ];
 
 let index = 0;
-const title = document.getElementById("mainTitle");
 
-function cycleTitle() {
-    index = (index + 1) % titles.length;
-    const t = titles[index];
+function rotateTitle(){
+  const item = titles[index];
+  titleEl.innerText = item.text;
 
-    title.style.opacity = 0;
-    setTimeout(() => {
-        title.innerText = t.text;
-        title.style.color = t.colors[0];
-        title.style.textShadow = `0 0 15px ${t.colors[1]}`;
-        title.style.opacity = 1;
-    }, 500);
+  titleEl.style.animation = "none";
+  void titleEl.offsetWidth;
+
+  if(item.class === "main"){
+    titleEl.style.fontSize="28px";
+    titleEl.style.animation="floatTitle 3.5s infinite, glowMain 1.7s infinite alternate";
+    titleEl.style.color="#ffffff";
+    titleEl.style.textShadow="0 0 15px #fff";
+  }
+  if(item.class === "pinkpurple"){
+    titleEl.style.fontSize="25px";
+    titleEl.style.animation="neonPinkPurple 2s infinite, floatTitle 3.5s infinite";
+  }
+  if(item.class === "blue"){
+    titleEl.style.fontSize="25px";
+    titleEl.style.animation="neonBlue 2s infinite, floatTitle 3.5s infinite";
+  }
+  if(item.class === "purplered"){
+    titleEl.style.fontSize="25px";
+    titleEl.style.animation="neonPurpleRed 2s infinite, floatTitle 3.5s infinite";
+  }
+
+  index = (index + 1) % titles.length;
 }
 
-setInterval(cycleTitle, 3000);
-
-/* ABOUT BOX */
-function openAbout() {
-    document.getElementById("aboutBox").style.display = "flex";
-}
-
-function closeAbout() {
-    document.getElementById("aboutBox").style.display = "none";
-}
+setInterval(rotateTitle,3000);
 </script>
 
 </body>
