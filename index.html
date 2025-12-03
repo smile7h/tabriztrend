@@ -83,25 +83,37 @@ body {
   100%{transform:translateY(0);}
 }
 
-/* === SECOND IMAGE STATIC BACKGROUND === */
+/* === SECOND IMAGE WITH COLOR ANIMATION === */
 .static-image-holder {
   width:100%; /* طول برابر card */
   height:auto;
   padding:10px 0;
   margin:20px auto;
   border-radius:12px; /* گوشه‌های کمی گرد */
-  background: linear-gradient(145deg, #f0f0f0, #d9d9d9);
-  box-shadow: 6px 6px 12px #b0b0b0, -6px -6px 12px #ffffff; /* برجسته سه بعدی */
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
+  animation: backgroundColorCycle 16s infinite alternate; /* چرخه رنگ‌ها */
 }
 
 .static-image-holder img {
   height:auto;
   max-width:100%;
   border-radius:6px; /* گوشه‌های کمی گرد */
+}
+
+/* چرخه رنگ پس‌زمینه */
+@keyframes backgroundColorCycle {
+  0% { background-color:#39ff14; }       /* سبز فسفری */
+  12.5% { background-color:#ff8c00; }    /* نارنجی */
+  25% { background-color:#1e90ff; }      /* آبی */
+  37.5% { background-color:#00ff00; }    /* سبز */
+  50% { background-color:#ff0000; }      /* قرمز */
+  62.5% { background-color:#800080; }    /* بنفش */
+  75% { background-color:#ff69b4; }      /* صورتی */
+  87.5% { background-color:#ffffff; }    /* سفید */
+  100% { background-color:#39ff14; }     /* سبز فسفری */
 }
 
 /* === ROTATING TITLES === */
@@ -225,7 +237,7 @@ a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
     <img class="logo" src="logo.png">
   </div>
 
-  <!-- Static Second Image -->
+  <!-- Second Image with Animated Background -->
   <div class="static-image-holder">
     <img src="alllogo1.png" alt="All Logo">
   </div>
