@@ -83,10 +83,11 @@ body {
   100%{transform:translateY(0);}
 }
 
-/* === MOVING SECOND IMAGE === */
+/* === SECOND IMAGE STATIC BACKGROUND === */
 .static-image-holder {
-  width:160px; /* کمی بزرگتر */
-  height:160px;
+  width:100%; /* طول برابر card */
+  height:auto;
+  padding:10px 0;
   margin:20px auto;
   border-radius:12px; /* گوشه‌های کمی گرد */
   background: linear-gradient(145deg, #f0f0f0, #d9d9d9);
@@ -95,27 +96,12 @@ body {
   justify-content:center;
   align-items:center;
   overflow:hidden;
-  position:relative;
-  animation: moveLeftRight 5s ease-in-out infinite alternate;
 }
 
 .static-image-holder img {
-  width:140px;
-  height:140px;
-  border-radius:12px; /* گوشه‌های کمی گرد */
-  animation: imageGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes moveLeftRight {
-  0% { transform: translateX(-10px); }
-  50% { transform: translateX(10px); }
-  100% { transform: translateX(-10px); }
-}
-
-@keyframes imageGlow {
-  0% { filter: drop-shadow(0 0 4px #fff); }
-  50% { filter: drop-shadow(0 0 10px #fffa90); }
-  100% { filter: drop-shadow(0 0 4px #fff); }
+  height:auto;
+  max-width:100%;
+  border-radius:6px; /* گوشه‌های کمی گرد */
 }
 
 /* === ROTATING TITLES === */
@@ -239,7 +225,7 @@ a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
     <img class="logo" src="logo.png">
   </div>
 
-  <!-- Animated Second Image -->
+  <!-- Static Second Image -->
   <div class="static-image-holder">
     <img src="alllogo1.png" alt="All Logo">
   </div>
