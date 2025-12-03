@@ -30,16 +30,15 @@ body {
   width:90%;
   max-width:540px;
   position:relative;
-  overflow:hidden; /* محدود کردن حرکت تصویر متحرک */
 }
 
 /* === LOGO === */
 .logo-holder {
-  background:white;
+  background:rgba(255,255,255,0.8); /* پس زمینه سفید شیشه ای */
   padding:12px;
   border-radius:12px;
-  margin-bottom:18px;
-  width:120px; 
+  margin:0 auto 18px auto; /* مرکز کردن لوگو */
+  width:120px;
   display:inline-block;
   position:relative;
   animation: floatLogo 3s ease-in-out infinite alternate;
@@ -57,19 +56,28 @@ body {
   100%{transform:translateY(0);}
 }
 
-/* === FLOATING IMAGE === */
-.floating-image {
-  width:120px; /* اندازه تصویر */
-  height:auto;
-  position:absolute;
-  top:140px; /* پایین لوگوی اصلی */
-  left:100%;
-  animation: floatImage 7s linear infinite;
+/* === STATIC IMAGE BELOW LOGO WITH LIGHT SHAKE === */
+.static-image-holder {
+  background:white; /* پس زمینه سفید */
+  width:100%; /* طول هم اندازه card */
+  display:flex;
+  justify-content:center;
+  margin:20px 0; /* فاصله از لوگو و تیتر */
+  padding:10px 0;
 }
 
-@keyframes floatImage {
-  0% { left:100%; }
-  100% { left:-120px; } /* خارج شدن از سمت چپ به اندازه عرض تصویر */
+.static-image-holder img {
+  width:160px; /* کمی بزرگتر */
+  border-radius:12px;
+  animation: shake 1s ease-in-out infinite alternate;
+}
+
+@keyframes shake {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-2px) rotate(-1deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(2px) rotate(1deg); }
+  100% { transform: translateY(0) rotate(0deg); }
 }
 
 /* === ROTATING TITLES === */
@@ -77,7 +85,7 @@ body {
   font-size:27px;
   font-family:'Montserrat', sans-serif;
   letter-spacing:2px;
-  margin:10px 0;
+  margin:20px 0; /* فاصله از تصویر پایین لوگو */
   font-weight:700;
   transition:0.5s ease;
   padding:10px 0;
@@ -120,7 +128,7 @@ body {
   line-height:1.6;
 }
 
-/* === LINKS – نسخهٔ قبلی با افکت شیک === */
+/* === LINKS === */
 .links {
   display:flex;
   flex-direction:column;
@@ -193,9 +201,9 @@ a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
     <img class="logo" src="logo.png">
   </div>
 
-  <!-- Floating Animated Image Below Logo -->
-  <div class="floating-image">
-    <img src="alllogo1.png" style="width:100%; border-radius:12px;">
+  <!-- Static Image Below Logo with White Background -->
+  <div class="static-image-holder">
+    <img src="alllogo1.png" alt="All Logo">
   </div>
 
   <!-- Rotating Title -->
