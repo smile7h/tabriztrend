@@ -29,6 +29,8 @@ body {
   box-shadow:0 8px 30px rgba(0,0,0,0.6);
   width:90%;
   max-width:540px;
+  position:relative;
+  overflow:hidden; /* محدود کردن حرکت تصویر متحرک */
 }
 
 /* === LOGO === */
@@ -37,8 +39,8 @@ body {
   padding:12px;
   border-radius:12px;
   margin-bottom:18px;
-  width:120px; /* عرض کادر لوگو */
-  overflow:hidden; /* محدود کردن کادر حرکت تصویر */
+  width:120px; 
+  display:inline-block;
   position:relative;
   animation: floatLogo 3s ease-in-out infinite alternate;
 }
@@ -57,20 +59,17 @@ body {
 
 /* === FLOATING IMAGE === */
 .floating-image {
-  width:120px; /* هم‌اندازه لوگو */
+  width:120px; /* اندازه تصویر */
   height:auto;
   position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  border-radius:12px;
-  backdrop-filter: blur(8px);
-  background: rgba(255,255,255,0.2);
+  top:140px; /* پایین لوگوی اصلی */
+  left:100%;
   animation: floatImage 7s linear infinite;
 }
 
 @keyframes floatImage {
   0% { left:100%; }
-  100% { left:0%; }
+  100% { left:-120px; } /* خارج شدن از سمت چپ به اندازه عرض تصویر */
 }
 
 /* === ROTATING TITLES === */
@@ -192,11 +191,11 @@ a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
 
   <div class="logo-holder">
     <img class="logo" src="logo.png">
+  </div>
 
-    <!-- Floating Animated Image -->
-    <div class="floating-image">
-      <img src="alllogo.png" style="width:100%; border-radius:12px;">
-    </div>
+  <!-- Floating Animated Image Below Logo -->
+  <div class="floating-image">
+    <img src="alllogo1.png" style="width:100%; border-radius:12px;">
   </div>
 
   <!-- Rotating Title -->
