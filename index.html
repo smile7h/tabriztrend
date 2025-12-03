@@ -83,7 +83,7 @@ body {
   100%{transform:translateY(0);}
 }
 
-/* === SECOND IMAGE WITH GRADIENT COLOR BACKGROUND === */
+/* === SECOND IMAGE WITH FADE GRADIENT === */
 .static-image-holder {
   width:100%;
   height:auto;
@@ -94,9 +94,9 @@ body {
   justify-content:center;
   align-items:center;
   overflow:hidden;
+  position:relative;
   background: linear-gradient(90deg, #39ff14, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00);
   background-size:200% 200%;
-  animation: gradientShift 3.5s ease-in-out infinite alternate;
 }
 
 .static-image-holder img {
@@ -106,18 +106,24 @@ body {
   animation: subtleShake 2s infinite alternate;
 }
 
-/* حرکت نرم تصویر دوم (لرزش کوتاه) */
+/* لرزش کوتاه تصویر دوم */
 @keyframes subtleShake {
   0% { transform:translateX(0); }
   50% { transform:translateX(2px); }
   100% { transform:translateX(0); }
 }
 
-/* گرادیانت ملایم پس‌زمینه */
-@keyframes gradientShift {
-  0% { background-position:0% 50%; }
-  50% { background-position:100% 50%; }
-  100% { background-position:0% 50%; }
+/* تغییر رنگ آرام و ملایم با فید بین رنگ‌ها */
+@keyframes gradientFade {
+  0% { background: linear-gradient(90deg, #39ff14, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00); }
+  25% { background: linear-gradient(90deg, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00, #39ff14); }
+  50% { background: linear-gradient(90deg, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00, #39ff14, #ff8c00); }
+  75% { background: linear-gradient(90deg, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00, #39ff14, #ff8c00, #1e90ff); }
+  100% { background: linear-gradient(90deg, #39ff14, #ff8c00, #1e90ff, #00ff00, #ff0000, #800080, #ff69b4, #ffffff, #ffff00); }
+}
+
+.static-image-holder {
+  animation: gradientFade 4s ease-in-out infinite;
 }
 
 /* === ROTATING TITLES === */
