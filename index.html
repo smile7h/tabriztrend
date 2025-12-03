@@ -34,20 +34,47 @@ body {
 
 /* === LOGO === */
 .logo-holder {
-  background:rgba(255,255,255,0.8); /* پس زمینه سفید شیشه ای */
-  padding:12px;
-  border-radius:12px;
+  padding:0;
   margin:0 auto 18px auto; /* مرکز کردن لوگو */
   width:120px;
   display:inline-block;
   position:relative;
   animation: floatLogo 3s ease-in-out infinite alternate;
 }
-.logo-holder:hover { transform:translateY(-6px) rotate(-3deg) scale(1.05); }
 
 .logo {
   width:120px;
   border-radius:5%;
+  position:relative;
+  z-index:1;
+  animation: glowLogo 2s infinite alternate;
+}
+
+/* هاله نورانی دور لوگو */
+.logo-holder::after {
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%, -50%);
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,0,0.0));
+  filter: blur(12px);
+  animation: glowPulse 2s infinite alternate;
+  z-index:0;
+}
+
+@keyframes glowPulse {
+  0% { opacity:0.3; transform:translate(-50%, -50%) scale(1); }
+  50% { opacity:0.6; transform:translate(-50%, -50%) scale(1.1); }
+  100% { opacity:0.3; transform:translate(-50%, -50%) scale(1); }
+}
+
+@keyframes glowLogo {
+  0% { filter: drop-shadow(0 0 4px #fff); }
+  50% { filter: drop-shadow(0 0 8px #fffa90); }
+  100% { filter: drop-shadow(0 0 4px #fff); }
 }
 
 @keyframes floatLogo {
@@ -56,28 +83,39 @@ body {
   100%{transform:translateY(0);}
 }
 
-/* === STATIC IMAGE BELOW LOGO WITH LIGHT SHAKE === */
+/* === MOVING SECOND IMAGE === */
 .static-image-holder {
-  background:white; /* پس زمینه سفید */
-  width:100%; /* طول هم اندازه card */
+  width:160px; /* کمی بزرگتر */
+  height:160px;
+  margin:20px auto;
+  border-radius:50%;
+  background: linear-gradient(145deg, #f0f0f0, #d9d9d9);
+  box-shadow: 6px 6px 12px #b0b0b0, -6px -6px 12px #ffffff; /* برجسته سه بعدی */
   display:flex;
   justify-content:center;
-  margin:20px 0; /* فاصله از لوگو و تیتر */
-  padding:10px 0;
+  align-items:center;
+  overflow:hidden;
+  position:relative;
+  animation: moveLeftRight 5s ease-in-out infinite alternate;
 }
 
 .static-image-holder img {
-  width:160px; /* کمی بزرگتر */
-  border-radius:12px;
-  animation: shake 1s ease-in-out infinite alternate;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  animation: imageGlow 3s ease-in-out infinite alternate;
 }
 
-@keyframes shake {
-  0% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-2px) rotate(-1deg); }
-  50% { transform: translateY(0) rotate(0deg); }
-  75% { transform: translateY(2px) rotate(1deg); }
-  100% { transform: translateY(0) rotate(0deg); }
+@keyframes moveLeftRight {
+  0% { transform: translateX(-10px); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(-10px); }
+}
+
+@keyframes imageGlow {
+  0% { filter: drop-shadow(0 0 4px #fff); }
+  50% { filter: drop-shadow(0 0 10px #fffa90); }
+  100% { filter: drop-shadow(0 0 4px #fff); }
 }
 
 /* === ROTATING TITLES === */
@@ -85,7 +123,7 @@ body {
   font-size:27px;
   font-family:'Montserrat', sans-serif;
   letter-spacing:2px;
-  margin:20px 0; /* فاصله از تصویر پایین لوگو */
+  margin:20px 0;
   font-weight:700;
   transition:0.5s ease;
   padding:10px 0;
@@ -201,7 +239,7 @@ a[href*="giphy"] { background:linear-gradient(90deg,#000,#333,#000); }
     <img class="logo" src="logo.png">
   </div>
 
-  <!-- Static Image Below Logo with White Background -->
+  <!-- Animated Second Image -->
   <div class="static-image-holder">
     <img src="alllogo1.png" alt="All Logo">
   </div>
